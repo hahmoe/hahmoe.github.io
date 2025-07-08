@@ -1,13 +1,186 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Coming Soon</title>
   <style>
-    body { font-family: sans-serif; text-align: center; padding-top: 20%; }
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      text-align: center;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      color: white;
+      background: linear-gradient(135deg, #bdf000, #a144ec, #000000);
+      background-size: 400% 400%;
+      animation: gradientShift 4s ease-out 1 forwards;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+
+    .social-links {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 20px;
+    }
+
+    .social-icon {
+      position: relative;
+      text-align: center;
+    }
+
+    .social-icon img {
+      width: 30px;
+      height: 30px;
+      filter: brightness(0) invert(1);
+      transition: transform 0.2s ease;
+    }
+
+    .social-icon img:hover {
+      transform: scale(1.1);
+    }
+
+    .social-label {
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      color: white;
+      opacity: 0;
+      margin-top: 5px;
+      transition: opacity 0.3s ease;
+    }
+
+    .social-icon:hover .social-label {
+      opacity: 1;
+    }
+
+    .clock-container {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      text-align: right;
+      font-size: 0.9rem;
+      font-family: Arial, sans-serif;
+      cursor: default;
+    }
+
+    .clock-timezones {
+      display: none;
+      font-size: 0.8rem;
+      color: #ddd;
+      margin-top: 5px;
+    }
+
+    .clock-container:hover .clock-timezones {
+      display: block;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 0 10px rgb(0, 0, 0);
+    }
+
+    p {
+      font-size: 1.2rem;
+      color: #ddd;
+    }
+
+      .footer {
+    position: absolute;
+    bottom: 15px;
+    width: 100%;
+    text-align: center;
+    font-size: 0.85rem;
+    font-family: Arial, sans-serif;
+    color: #ccc;
+  }
+
+  .footer a {
+    color: #fff;
+    text-decoration: underline;
+    margin-left: 5px;
+    transition: color 0.3s;
+  }
+
+  .footer a:hover {
+    color: #00ff9f;
+  }
+
   </style>
 </head>
 <body>
-  <h1> </h1>
-  <p>Offline - TMV</p>
+
+  <!-- Top Center Instagram Link -->
+  <div class="social-links">
+    <div class="social-icon">
+      <a href="https://instagram.com/nidoliverse" target="_blank" aria-label="Instagram">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram Logo" />
+      </a>
+      <div class="social-label">Instagram</div>
+    </div>
+  </div>
+
+  <!-- Top Right Clock -->
+  <div class="clock-container">
+    <div id="local-time">Loading...</div>
+    <div class="clock-timezones" id="alt-times"></div>
+  </div>
+
+  <h1>Coming Soon</h1>
+  <p>Offline – TMV</p>
+
+  <!-- JavaScript Clock -->
+  <script>
+    function formatTime(date) {
+      return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    }
+
+    function formatDate(date) {
+      return date.toLocaleDateString();
+    }
+
+    function updateClocks() {
+      const now = new Date();
+
+      // Local time
+      document.getElementById('local-time').innerText =
+        `Local: ${formatDate(now)} ${formatTime(now)}`;
+
+      // Other time zones
+      const options = { hour: '2-digit', minute: '2-digit', timeZoneName: 'short' };
+      const timezones = [
+        { name: 'Sarajevo', zone: 'Europe/Sarajevo' },
+        { name: 'EST', zone: 'America/New_York' },
+        { name: 'PST', zone: 'America/Los_Angeles' },
+      ];
+
+      const altTimes = timezones.map(tz => {
+        const time = new Date().toLocaleTimeString('en-US', { ...options, timeZone: tz.zone });
+        return `${tz.name}: ${time}`;
+      }).join('<br>');
+
+      document.getElementById('alt-times').innerHTML = altTimes;
+    }
+
+    updateClocks();
+    setInterval(updateClocks, 1000);
+  </script>
+
+  <!-- Footer -->
+  <footer class="footer">
+    Powered by 
+    <a href="https://instagram.com/thismyvisiontmv" target="_blank">This My Vision</a>
+  </footer>
+
 </body>
 </html>
