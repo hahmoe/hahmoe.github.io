@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" id="top">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nidoli</title>
+
+  <style>
+    /* =========================
+       EASY EDIT ZONE (branding)
+       ========================= */
+    :root {
+      --bg-color: #44b2ff;
+      --text-color: #000000;
+      --logo-width: 220px;        /* change logo size here */
+      --logo-width-mobile: 170px; /* mobile logo size */
+      --button-width: min(420px, 90vw);
+      --button-radius: 999px;
+      --button-font-size: 1rem;
+      --button-gap: 14px;
+      --content-top-padding: 42px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      min-height: 100%;
+    }
+
+    body {
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-family: Arial, Helvetica, sans-serif;
+      min-height: 100vh;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: var(--content-top-padding) 16px 32px;
+      gap: 28px;
+    }
+
+    .logo-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      outline: none;
+      border-radius: 12px;
+    }
+
+    .logo-link:focus-visible {
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.2);
+    }
+
+    .logo {
+      width: var(--logo-width);
+      max-width: 75vw;
+      height: auto;
+      display: block;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    .links {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--button-gap);
+    }
+
+    .btn {
+      width: var(--button-width);
+      text-decoration: none;
+      color: var(--text-color);
+      background: #ffffff;
+      border: 2px solid #000000;
+      border-radius: var(--button-radius);
+      padding: 14px 18px;
+      text-align: center;
+      font-weight: 700;
+      font-size: var(--button-font-size);
+      line-height: 1.2;
+      transition: transform 120ms ease, box-shadow 120ms ease, background-color 120ms ease;
+      box-shadow: 0 4px 0 #000000;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      background: #f6f6f6;
+    }
+
+    .btn:active {
+      transform: translateY(2px);
+      box-shadow: 0 2px 0 #000000;
+    }
+
+    .btn:focus-visible {
+      outline: 3px solid rgba(0, 0, 0, 0.25);
+      outline-offset: 2px;
+    }
+
+    @media (max-width: 640px) {
+      :root {
+        --logo-width: var(--logo-width-mobile);
+        --content-top-padding: 28px;
+      }
+
+      .page {
+        gap: 22px;
+      }
+
+      .btn {
+        padding: 13px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <!-- Clicking the logo goes back to the homepage -->
+    <a class="logo-link" href="./" aria-label="Nidoli homepage">
+      <!--
+        LOGO FILE (easy to swap):
+        1) Save your attached logo image in the same folder as this file
+        2) Name it "nidoli-logo.png" (or change src below)
+        3) For variations, replace the image file OR change --logo-width in :root
+      -->
+      <img class="logo" src="./nidoli-logo.png" alt="Nidoli logo" />
+    </a>
+
+    <section class="links" aria-label="Nidoli links">
+      <a class="btn" href="https://open.spotify.com/artist/4HcZjx5yClVrxwlREwwtQS?si=TdYCiTv1QLKelCTFe2t-PQ&nd=1&dlsi=705400bbf88c4c5e" target="_blank" rel="noopener noreferrer">Spotify</a>
+
+      <a class="btn" href="https://music.apple.com/de/artist/nidoli/1726257077" target="_blank" rel="noopener noreferrer">Apple Music</a>
+
+      <a class="btn" href="https://soundcloud.com/nidoliofficial" target="_blank" rel="noopener noreferrer">SoundCloud</a>
+
+      <a class="btn" href="https://www.youtube.com/@nidolimusic" target="_blank" rel="noopener noreferrer">YouTube – @nidolimusic</a>
+
+      <a class="btn" href="https://www.youtube.com/@nidoliverse" target="_blank" rel="noopener noreferrer">YouTube – @nidoliverse</a>
+    </section>
+  </main>
+</body>
+</html>
