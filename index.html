@@ -1,186 +1,153 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="top">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Coming Soon</title>
+  <title>Nidoli</title>
+
   <style>
-    body {
+    /* =========================
+       EASY EDIT ZONE (branding)
+       ========================= */
+    :root {
+      --bg-color: #44b2ff;
+      --text-color: #000000;
+      --logo-width: 220px;        /* change logo size here */
+      --logo-width-mobile: 170px; /* mobile logo size */
+      --button-width: min(420px, 90vw);
+      --button-radius: 999px;
+      --button-font-size: 1rem;
+      --button-gap: 14px;
+      --content-top-padding: 42px;
+    }
+
+    * {
+      box-sizing: border-box;
       margin: 0;
-      font-family: sans-serif;
-      text-align: center;
-      height: 100vh;
+      padding: 0;
+    }
+
+    html, body {
+      min-height: 100%;
+    }
+
+    body {
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-family: Arial, Helvetica, sans-serif;
+      min-height: 100vh;
+    }
+
+    .page {
+      min-height: 100vh;
       display: flex;
-      justify-content: center;
-      align-items: center;
       flex-direction: column;
-      color: white;
-      background: linear-gradient(135deg, #bdf000, #a144ec, #000000);
-      background-size: 400% 400%;
-      animation: gradientShift 4s ease-out 1 forwards;
+      align-items: center;
+      padding: var(--content-top-padding) 16px 32px;
+      gap: 28px;
     }
 
-    @keyframes gradientShift {
-      0% { background-position: 0% 50%; }
-      100% { background-position: 100% 50%; }
+    .logo-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      outline: none;
+      border-radius: 12px;
     }
 
-    .social-links {
-      position: absolute;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 20px;
+    .logo-link:focus-visible {
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.2);
     }
 
-    .social-icon {
-      position: relative;
-      text-align: center;
-    }
-
-    .social-icon img {
-      width: 30px;
-      height: 30px;
-      filter: brightness(0) invert(1);
-      transition: transform 0.2s ease;
-    }
-
-    .social-icon img:hover {
-      transform: scale(1.1);
-    }
-
-    .social-label {
-      font-family: Arial, sans-serif;
-      font-size: 12px;
-      color: white;
-      opacity: 0;
-      margin-top: 5px;
-      transition: opacity 0.3s ease;
-    }
-
-    .social-icon:hover .social-label {
-      opacity: 1;
-    }
-
-    .clock-container {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      text-align: right;
-      font-size: 0.9rem;
-      font-family: Arial, sans-serif;
-      cursor: default;
-    }
-
-    .clock-timezones {
-      display: none;
-      font-size: 0.8rem;
-      color: #ddd;
-      margin-top: 5px;
-    }
-
-    .clock-container:hover .clock-timezones {
+    .logo {
+      width: var(--logo-width);
+      max-width: 75vw;
+      height: auto;
       display: block;
+      user-select: none;
+      -webkit-user-drag: none;
     }
 
-    h1 {
-      font-size: 3rem;
-      margin-bottom: 0.5rem;
-      text-shadow: 0 0 10px rgb(0, 0, 0);
+    .links {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--button-gap);
     }
 
-    p {
-      font-size: 1.2rem;
-      color: #ddd;
+    .btn {
+      width: var(--button-width);
+      text-decoration: none;
+      color: var(--text-color);
+      background: #ffffff;
+      border: 2px solid #000000;
+      border-radius: var(--button-radius);
+      padding: 14px 18px;
+      text-align: center;
+      font-weight: 700;
+      font-size: var(--button-font-size);
+      line-height: 1.2;
+      transition: transform 120ms ease, box-shadow 120ms ease, background-color 120ms ease;
+      box-shadow: 0 4px 0 #000000;
     }
 
-      .footer {
-    position: absolute;
-    bottom: 15px;
-    width: 100%;
-    text-align: center;
-    font-size: 0.85rem;
-    font-family: Arial, sans-serif;
-    color: #ccc;
-  }
+    .btn:hover {
+      transform: translateY(-1px);
+      background: #f6f6f6;
+    }
 
-  .footer a {
-    color: #fff;
-    text-decoration: underline;
-    margin-left: 5px;
-    transition: color 0.3s;
-  }
+    .btn:active {
+      transform: translateY(2px);
+      box-shadow: 0 2px 0 #000000;
+    }
 
-  .footer a:hover {
-    color: #00ff9f;
-  }
+    .btn:focus-visible {
+      outline: 3px solid rgba(0, 0, 0, 0.25);
+      outline-offset: 2px;
+    }
 
+    @media (max-width: 640px) {
+      :root {
+        --logo-width: var(--logo-width-mobile);
+        --content-top-padding: 28px;
+      }
+
+      .page {
+        gap: 22px;
+      }
+
+      .btn {
+        padding: 13px 16px;
+      }
+    }
   </style>
 </head>
 <body>
+  <main class="page">
+    <!-- Clicking the logo goes back to the homepage -->
+    <a class="logo-link" href="./" aria-label="Nidoli homepage">
+      <!--
+        LOGO FILE (easy to swap):
+        1) Save your attached logo image in the same folder as this file
+        2) Name it "nidoli-logo.png" (or change src below)
+        3) For variations, replace the image file OR change --logo-width in :root
+      -->
+      <img class="logo" src="./nidoli-logo.png" alt="Nidoli logo" />
+    </a>
 
-  <!-- Top Center Instagram Link -->
-  <div class="social-links">
-    <div class="social-icon">
-      <a href="https://instagram.com/nidoliverse" target="_blank" aria-label="Instagram">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram Logo" />
-      </a>
-      <div class="social-label">Instagram</div>
-    </div>
-  </div>
+    <section class="links" aria-label="Nidoli links">
+      <a class="btn" href="https://open.spotify.com/artist/4HcZjx5yClVrxwlREwwtQS?si=TdYCiTv1QLKelCTFe2t-PQ&nd=1&dlsi=705400bbf88c4c5e" target="_blank" rel="noopener noreferrer">Spotify</a>
 
-  <!-- Top Right Clock -->
-  <div class="clock-container">
-    <div id="local-time">Loading...</div>
-    <div class="clock-timezones" id="alt-times"></div>
-  </div>
+      <a class="btn" href="https://music.apple.com/de/artist/nidoli/1726257077" target="_blank" rel="noopener noreferrer">Apple Music</a>
 
-  <h1>Coming Soon</h1>
-  <p>Offline – TMV</p>
+      <a class="btn" href="https://soundcloud.com/nidoliofficial" target="_blank" rel="noopener noreferrer">SoundCloud</a>
 
-  <!-- JavaScript Clock -->
-  <script>
-    function formatTime(date) {
-      return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    }
+      <a class="btn" href="https://www.youtube.com/@nidolimusic" target="_blank" rel="noopener noreferrer">YouTube – @nidolimusic</a>
 
-    function formatDate(date) {
-      return date.toLocaleDateString();
-    }
-
-    function updateClocks() {
-      const now = new Date();
-
-      // Local time
-      document.getElementById('local-time').innerText =
-        `Local: ${formatDate(now)} ${formatTime(now)}`;
-
-      // Other time zones
-      const options = { hour: '2-digit', minute: '2-digit', timeZoneName: 'short' };
-      const timezones = [
-        { name: 'Sarajevo', zone: 'Europe/Sarajevo' },
-        { name: 'EST', zone: 'America/New_York' },
-        { name: 'PST', zone: 'America/Los_Angeles' },
-      ];
-
-      const altTimes = timezones.map(tz => {
-        const time = new Date().toLocaleTimeString('en-US', { ...options, timeZone: tz.zone });
-        return `${tz.name}: ${time}`;
-      }).join('<br>');
-
-      document.getElementById('alt-times').innerHTML = altTimes;
-    }
-
-    updateClocks();
-    setInterval(updateClocks, 1000);
-  </script>
-
-  <!-- Footer -->
-  <footer class="footer">
-    Powered by 
-    <a href="https://instagram.com/thismyvisiontmv" target="_blank">This My Vision</a>
-  </footer>
-
+      <a class="btn" href="https://www.youtube.com/@nidoliverse" target="_blank" rel="noopener noreferrer">YouTube – @nidoliverse</a>
+    </section>
+  </main>
 </body>
 </html>
